@@ -1,0 +1,38 @@
+# Baysöz Labs <baysozlabs@proton.me> — continuous integration and quality gates.
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  ATTRIBUTION: "Baysöz Labs <baysozlabs@proton.me>"
+
+jobs:
+  quality-gates:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: "3.13"
+      - uses: astral-sh/setup-uv@d4b2f3b6ecc6e67c4457f6d3e41ec42d3d0fcb86
+      - name: Install project and gate tooling
+        run: |
+          uv venv
+          uv pip install -e .
+          uv pip install pytest ruff semgrep
+      - name: Unit and integration tests
+        run: uv run pytest -q
+      - name: Lint and static analysis
+        run: uv run ruff check --select E,F,W,S,B .
+      - name: Security analysis
+        run: uv run semgrep --config p/default --error .
+      - name: Live CLI smoke audit
+        run: uv run baysoz-tracecontinuity examples/broken-pipeline.json --format sarif --output /tmp/baysoz-audit.sarif --fail-on none

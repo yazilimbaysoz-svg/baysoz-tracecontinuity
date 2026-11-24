@@ -1,0 +1,17 @@
+# Baysöz Labs <baysozlabs@proton.me> — repository ignore rules.
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+uv.lock
+build/
+dist/
+.pytest_cache/
+.ruff_cache/
+.semgrep/
+coverage.xml
+htmlcov/
+.coverage
+*.sarif
+*.log
+.DS_Store

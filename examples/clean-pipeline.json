@@ -1,0 +1,43 @@
+{
+  "attribution": "Baysöz Labs <baysozlabs@proton.me>",
+  "contextObservations": [
+    {
+      "source": "edge-gateway",
+      "traceparent": "00-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa-1111111111111111-01",
+      "tracestate": "congo=t61rcWkgMzE",
+      "baggage": "tenant=acme"
+    }
+  ],
+  "spans": [
+    {
+      "traceId": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "spanId": "1111111111111111",
+      "parentSpanId": "0000000000000000",
+      "name": "GET /checkout",
+      "kind": "SPAN_KIND_SERVER",
+      "startTimeUnixNano": "1000000000",
+      "endTimeUnixNano": "1500000000",
+      "flags": "01",
+      "attributes": {
+        "http.request.method": "GET",
+        "http.response.status_code": 200,
+        "baggage": "tenant=acme"
+      }
+    },
+    {
+      "traceId": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "spanId": "2222222222222222",
+      "parentSpanId": "1111111111111111",
+      "name": "SELECT account",
+      "kind": "SPAN_KIND_CLIENT",
+      "startTimeUnixNano": "1050000000",
+      "endTimeUnixNano": "1400000000",
+      "flags": 1,
+      "attributes": {
+        "db.system": "postgresql",
+        "db.statement": "SELECT balance FROM accounts WHERE id = $1",
+        "baggage": "tenant=acme"
+      }
+    }
+  ]
+}

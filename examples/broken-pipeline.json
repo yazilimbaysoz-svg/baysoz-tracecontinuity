@@ -1,0 +1,74 @@
+{
+  "attribution": "Baysöz Labs <baysozlabs@proton.me>",
+  "contextObservations": [
+    {
+      "source": "edge-gateway",
+      "traceparent": "00-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa-1111111111111111-01",
+      "tracestate": "congo=t61rcWkgMzE",
+      "baggage": "tenant=acme"
+    },
+    {
+      "source": "worker-ingress",
+      "traceparent": "00-bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb-0000000000000000-01",
+      "tracestate": "congo=t61rcWkgMzE",
+      "baggage": "tenant=acme"
+    }
+  ],
+  "spans": [
+    {
+      "traceId": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "spanId": "1111111111111111",
+      "parentSpanId": "0000000000000000",
+      "name": "GET /checkout",
+      "kind": "SPAN_KIND_SERVER",
+      "startTimeUnixNano": "1000000000",
+      "endTimeUnixNano": "1500000000",
+      "flags": "01",
+      "attributes": {
+        "http.request.method": "GET",
+        "http.response.status_code": 200,
+        "baggage": "tenant=acme"
+      }
+    },
+    {
+      "traceId": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "spanId": "2222222222222222",
+      "parentSpanId": "1111111111111111",
+      "name": "checkout handler",
+      "kind": "SPAN_KIND_SERVER",
+      "startTimeUnixNano": "1050000000",
+      "endTimeUnixNano": "1400000000",
+      "flags": 0,
+      "status": { "code": "STATUS_CODE_ERROR", "message": "payment declined" },
+      "attributes": {
+        "http.request.method": "get",
+        "http.response.status_code": 700
+      }
+    },
+    {
+      "traceId": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "spanId": "3333333333333333",
+      "parentSpanId": "9999999999999999",
+      "name": "SELECT users",
+      "kind": "SPAN_KIND_CLIENT",
+      "startTimeUnixNano": "1100000000",
+      "endTimeUnixNano": "1090000000",
+      "flags": 1,
+      "attributes": {
+        "db.system": "postgresql",
+        "db.statement": "SELECT * FROM users WHERE id='42'"
+      }
+    },
+    {
+      "traceId": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "spanId": "2222222222222222",
+      "parentSpanId": "1111111111111111",
+      "name": "cache lookup",
+      "kind": "SPAN_KIND_CLIENT",
+      "startTimeUnixNano": "1060000000",
+      "endTimeUnixNano": "1070000000",
+      "flags": 1,
+      "attributes": {}
+    }
+  ]
+}

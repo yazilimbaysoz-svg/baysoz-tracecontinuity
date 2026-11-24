@@ -1,0 +1,52 @@
+[build-system]
+requires = ["hatchling>=1.25"]
+build-backend = "hatchling.build"
+
+[project]
+name = "baysoz-tracecontinuity"
+version = "1.0.0"
+description = "Deterministic offline distributed-trace continuity and W3C context-propagation conformance oracle with SARIF CI gates — Baysöz Labs <baysozlabs@proton.me>"
+readme = "README.md"
+requires-python = ">=3.13"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{ name = "Baysöz Labs", email = "baysozlabs@proton.me" }]
+keywords = ["observability", "opentelemetry", "tracing", "w3c-trace-context", "sarif", "baysöz-labs"]
+classifiers = [
+  "Development Status :: 5 - Production/Stable",
+  "Environment :: Console",
+  "Intended Audience :: Developers",
+  "Intended Audience :: System Administrators",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3.13",
+  "Topic :: System :: Monitoring",
+]
+dependencies = []
+
+[project.optional-dependencies]
+dev = ["pytest>=8.3", "ruff>=0.9", "semgrep>=1.90"]
+
+[project.scripts]
+baysoz-tracecontinuity = "baysoz_tracecontinuity.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/yazilimbaysoz-svg/baysoz-tracecontinuity"
+Issues = "https://github.com/yazilimbaysoz-svg/baysoz-tracecontinuity/issues"
+Organization = "https://github.com/yazilimbaysoz-svg"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/baysoz_tracecontinuity"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py313"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "S", "B"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["S101"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
