@@ -40,14 +40,15 @@
 
 Each gate must be green with zero findings before release. Any regression reopens this phase.
 
-## Phase 6 — Supreme Grand Jury Tribunal (PENDING RELEASE CHECK)
+## Phase 6 — Supreme Grand Jury Tribunal (COMPLETE)
 
-The tribunal executes the installed CLI against the clean and adversarial examples plus hand-built malformed inputs, checks SARIF validity, verifies that no finding is a stub or hallucination (every rule ID must exist in the catalog and map to a real input defect), and requires unanimous PASS.
+The tribunal executed the installed CLI and library against the clean and adversarial examples plus hand-built malformed inputs, checked SARIF validity, and verified that all 33 emitted rule IDs exist in the catalog and map to real input defects. Determinism was confirmed across 25 CLI render cases with different `PYTHONHASHSEED` values. Verdict: **unanimous PASS** from all three jurors.
 
-## Phase 7 — Publication (PENDING RELEASE CHECK)
+## Phase 7 — Publication (COMPLETE)
 
-- Create public repository `yazilimbaysoz-svg/baysoz-tracecontinuity` with crisp description and topics.
-- Push source from the workspace and emit the showcase result JSON without touching other showcase files.
+- Created public repository `yazilimbaysoz-svg/baysoz-tracecontinuity` with a crisp attributed description and nine topics.
+- Pushed source from the workspace and emitted the showcase result JSON without touching other showcase files.
+- Repository URL: <https://github.com/yazilimbaysoz-svg/baysoz-tracecontinuity>.
 
 ## Post-release backlog
 
